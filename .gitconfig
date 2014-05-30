@@ -1,0 +1,19 @@
+[user]
+	name = gen
+	email = gen0e0@gmail.com
+[core]
+  filemode = true
+	editor = vim
+    # 行末のLFをCRLFへ変換する (Windows用)
+    autocrlf = input
+[color]
+	ui = auto
+[alias]
+    br = branch
+    ci = commit
+    co = checkout
+    st = status
+    sh = show
+    sb = show-branch
+    df = diff
+    l = log

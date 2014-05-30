@@ -1,0 +1,34 @@
+" vim: set ft=vimperator:
+
+" Basics
+
+" Disable accesskey
+set! ui.key.generalAccessKey=0
+
+" Disable auto focus
+set focuscontent
+
+" Hit a Hint
+set hintchars=asdfghjkl
+highlight Hint  z-index:100000; font-family:monospace; font-size:16px; font-weight: normal; color:white; background-color:red; border-color:ButtonShadow; word-break:normal;
+
+" When enter the command line mode then kill IME
+style -name commandline-ime chrome://* #liberator-commandline-command input {ime-mode: inactive;}
+
+" Kill beep
+" set visualbell
+" highlight Bell display:none
+javascript liberator.beep = function() true
+
+" Key mapping
+
+noremap j 5j
+noremap k 5k
+cmap <C-d> <Del>
+imap <C-d> <Del>
+cmap <C-h> <BS>
+imap <C-h> <BS>
+" <C-k>で行末まで削除 
+js mappings.addUserMap([modes.INSERT, modes.COMMAND_LINE], ["<C-k>"], "Delete until end of current line", function() true, { route: true }); 
+map <C-l> o
+map <C-t> t
