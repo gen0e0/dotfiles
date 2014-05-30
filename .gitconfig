@@ -8,6 +8,8 @@
     autocrlf = input
 [color]
 	ui = auto
+[push]
+	default = current
 [alias]
     br = branch
     ci = commit
