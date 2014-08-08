@@ -24,10 +24,12 @@ javascript liberator.beep = function() true
 
 noremap j 5j
 noremap k 5k
+noremap <S-b> :bmarks<CR>
 cmap <C-d> <Del>
 imap <C-d> <Del>
 cmap <C-h> <BS>
 imap <C-h> <BS>
+
 " <C-k>で行末まで削除 
 js mappings.addUserMap([modes.INSERT, modes.COMMAND_LINE], ["<C-k>"], "Delete until end of current line", function() true, { route: true }); 
 map <C-l> o
