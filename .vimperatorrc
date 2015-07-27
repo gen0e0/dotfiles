@@ -10,7 +10,7 @@ set focuscontent
 
 " Hit a Hint
 set hintchars=asdfghjkl
-highlight Hint  z-index:100000; font-family:monospace; font-size:16px; font-weight: normal; color:white; background-color:red; border-color:ButtonShadow; word-break:normal;
+hi Hint z-index:100000; 
 
 " When enter the command line mode then kill IME
 style -name commandline-ime chrome://* #liberator-commandline-command input {ime-mode: inactive;}
@@ -34,3 +34,5 @@ imap <C-h> <BS>
 js mappings.addUserMap([modes.INSERT, modes.COMMAND_LINE], ["<C-k>"], "Delete until end of current line", function() true, { route: true }); 
 map <C-l> o
 map <C-t> t
+
+colorscheme gen

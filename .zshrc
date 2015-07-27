@@ -54,6 +54,12 @@ case "${TERM}" in
   ;;
 esac
 
+# 便利関数
+# http://south37.hatenablog.com/entries/2014/08/17
+function grepall() { git ls-files | xargs grep -l $1 }
+function sedall()  { grepall $1 | xargs sed -i '' s/$1/$2/g }
+function renameall() { git ls-files | grep --color=never $1 | while read LINE; do mv $LINE `echo $LINE | sed s/$1/$2/g`; done }
+
 # 共通エイリアス
 alias vi="vim"
 alias ls="ls -G"
@@ -68,7 +74,7 @@ LESS='-R'
 LS='--color=always'
 CLICOLOR_FORCE=1 # lsを端末以外へ出力する場合(lessへ渡す時など)も色付きにする
 
-export LANG GREP_OPTIONS LSCOLORS LESS CLICOLOR_FORCE
+export GREP_OPTIONS LSCOLORS LESS CLICOLOR_FORCE
 
 # 各マシン固有の設定は.profileに書く
 if [ -f $HOME/.profile ]; then

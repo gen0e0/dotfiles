@@ -6,6 +6,7 @@
 	editor = vim
     # 行末のLFをCRLFへ変換する (Windows用)
     autocrlf = input
+	excludesfile = ~/.gitignore_global
 [color]
 	ui = auto
 [push]
