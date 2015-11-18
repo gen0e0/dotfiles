@@ -46,7 +46,7 @@ set backspace=indent,eol,start
 " Vundle 
 " to install: 
 " $ git clone https://github.com/VundleVim/Vundle.vim ~/.vim/bundle/Vundle.vim
-if isdirectory(expand("~/.vim/bundle/vundle.vim"))
+if isdirectory(expand("~/.vim/bundle/Vundle.vim"))
   " set the runtime path to include Vundle and initialize
   set rtp+=~/.vim/bundle/Vundle.vim
   filetype off 
