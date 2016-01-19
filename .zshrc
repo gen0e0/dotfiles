@@ -31,7 +31,7 @@ setopt share_history
 
 # プロンプトの設定
 # 文字属性を変えるエスケープシーケンスには%{%}を必ず付ける事。省略すると文字の幅寄せがずれる
-PROMPT="%{${fg[green]}%}%n@%m%{${fg[white]}%}:%{${fg[blue]}%}%~%{${fg[white]}%}%(!.#.$) %{${reset_color}%}"
+PROMPT="%{${fg[green]}%}%m%{${fg[white]}%}:%{${fg[blue]}%}%~%{${fg[white]}%}%(!.#.$) %{${reset_color}%}"
 PROMPT2="%{${fg[white]}%}%_> %{${reset_color}%}"
 SPROMPT="%{${fg[red]}%}correct: %R -> %r [nyae]? %{${reset_color}%}"
 RPROMPT=""
