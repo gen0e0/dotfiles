@@ -35,4 +35,4 @@ js mappings.addUserMap([modes.INSERT, modes.COMMAND_LINE], ["<C-k>"], "Delete un
 map <C-l> o
 map <C-t> t
 
-colorscheme gen
+colorscheme indigo
