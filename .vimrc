@@ -1,18 +1,27 @@
+" シンタックスハイライトオン
+syntax on
+" デフォルトカラースキーマ
+colorscheme default
+" 256色カラースキーマに対応
+set t_Co=256
+" バックグラウンドカラー設定
+set background=dark
+
+" 互換性モードオフ
 set nocompatible
 
+" エンコーディング
 set encoding=utf-8
 set fileencodings=utf-8,cp932,euc-jp
 
-" screen上で256色カラースキーマに対応
-" if $TERM == 'screen'
- set t_Co=256
-" endif
-
-syntax on
-colorscheme default
-
-set nobackup
+" バックアップオフ
 set noswapfile
+set nobackup
+set nowritebackup
+
+" ビープ音オフ
+set vb t_vb=
+set novisualbell
 
 " 開いたファイルのディレクトリに自動移動
 set autochdir
@@ -26,6 +35,14 @@ set mouse=
 set nowrap
 set nocursorline
 
+" 右下に行・列番号表示
+set ruler
+" 左の行番号非表示
+set nonumber
+
+" 移動コマンド後に行頭に移動しない
+set nostartofline
+
 " タブ
 set tabstop=2
 set softtabstop=2
@@ -35,16 +52,21 @@ set smarttab
 set smartindent
 set expandtab
 
+" 対応する括弧をハイライト
 set showmatch
+set matchtime=3
+set matchpairs& matchpairs+=<:>
+
+" インクリメンタルサーチ　
 set incsearch
 set ignorecase
 set smartcase
-set nonumber
 
+" バックスペースで色々削除できるようにする
 set backspace=indent,eol,start
 
 " Vundle 
-" to install: 
+" How to install: 
 " $ git clone https://github.com/VundleVim/Vundle.vim ~/.vim/bundle/Vundle.vim
 if isdirectory(expand("~/.vim/bundle/Vundle.vim"))
   " set the runtime path to include Vundle and initialize
@@ -54,7 +76,7 @@ if isdirectory(expand("~/.vim/bundle/Vundle.vim"))
 
   " インクリメンタルファイルサーチ
   Plugin 'ctrlpvim/ctrlp.vim'
-  let g:ctrlp_map = '<c-p>'
+  let g:ctrlp_map = '<C-o>'
   let g:ctrlp_cmd = 'CtrlP'
   let g:ctrlp_working_path_mode = 'ra'
 
@@ -65,7 +87,11 @@ if isdirectory(expand("~/.vim/bundle/Vundle.vim"))
   Plugin 'kchmck/vim-coffee-script'
 
   " Go lang
-  Plugin 'jnwhiteh/vim-golang'
+  Plugin 'fatih/vim-go'
+
+  " Python & Django
+  Plugin 'vim-scripts/indentpython.vim'
+  Plugin 'vim-scripts/django.vim'
 
   " Elixir
   Plugin 'elixir-lang/vim-elixir'
@@ -80,9 +106,32 @@ if isdirectory(expand("~/.vim/bundle/Vundle.vim"))
   colorscheme jellybeans
 endif
 
-
-" 検索結果のハイライトをESC連打で消す
-noremap <Esc><Esc> :nohlsearch<CR><Esc>
+autocmd FileType python setlocal shiftwidth=4 softtabstop=4 tabstop=4
 
 " 行末までyank
 nnoremap Y y$
+" j連打でノーマルモードへ
+inoremap jj <Esc>
+
+" Emacs like keymapping
+inoremap <C-f> <Right>
+inoremap <C-b> <Left>
+inoremap <C-p> <Up>
+inoremap <C-n> <Down>
+inoremap <C-a> ^
+nnoremap <C-a> ^
+inoremap <C-e> $
+nnoremap <C-e> $
+inoremap <C-d> <Del>
+inoremap <C-h> <BS>
+inoremap <C-k> d$
+
+" Tabs
+nnoremap <C-t> :tabnew<CR>
+inoremap <C-t> <ESC>:tabnew<CR>
+nnoremap <C-w> :tabclose<CR>
+inoremap <C-w> <ESC>:tabclose<CR>
+nnoremap <C-n> :tabNext<CR>
+inoremap <C-n> <ESC>:tabNext<CR>
+nnoremap <C-p> :tabprevious<CR>
+inoremap <C-p> <ESC>:tabprevious<CR>
