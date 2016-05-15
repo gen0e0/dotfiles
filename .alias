@@ -1,0 +1,12 @@
+alias vi="vim"
+alias ls="ls -G"
+alias la="ls -ahlG"
+alias b="popd"
+
+# for Rails
+alias be="bundle exec"
+
+# for Git
+alias gd="git diff --color-words"
+alias gl="git log --graph --all --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative"
+alias gs="git status --branch --short"

@@ -1,20 +1,23 @@
+# カラー設定読み込み
 autoload -Uz colors; colors
+# 補完設定読み込み
 autoload -Uz compinit; compinit
 
 # cd省略
 setopt auto_cd
 # cdでpushdする。
 setopt auto_pushd
-# pushdで同じディレクトリを重複してpushしない。
+# 同じディレクトリを重複してpushしない。
 setopt pushd_ignore_dups
 
 # 補完候補が複数ある時に、一覧表示する
 setopt auto_list
 
-# ベル抑制
-setopt no_beep
+# ビープ音抑制
+setopt no_beep # このオプションはzsh 5.0.2に存在しなかったが一応設定しておく
+setopt no_listbeep
 
-# 履歴
+# 履歴系
 HISTFILE=~/.zhistory
 HISTSIZE=10000
 SAVEHIST=10000
@@ -31,7 +34,7 @@ setopt share_history
 
 # プロンプトの設定
 # 文字属性を変えるエスケープシーケンスには%{%}を必ず付ける事。省略すると文字の幅寄せがずれる
-PROMPT="%{${fg[green]}%}%n@%m%{${fg[white]}%}:%{${fg[blue]}%}%~%{${fg[white]}%}%(!.#.$) %{${reset_color}%}"
+PROMPT="%{${fg[green]}%}%m%{${fg[white]}%}:%{${fg[blue]}%}%~%{${fg[white]}%}%(!.#.$) %{${reset_color}%}"
 PROMPT2="%{${fg[white]}%}%_> %{${reset_color}%}"
 SPROMPT="%{${fg[red]}%}correct: %R -> %r [nyae]? %{${reset_color}%}"
 RPROMPT=""
@@ -54,19 +57,6 @@ case "${TERM}" in
   ;;
 esac
 
-# 便利関数
-# http://south37.hatenablog.com/entries/2014/08/17
-function grepall() { git ls-files | xargs grep -l $1 }
-function sedall()  { grepall $1 | xargs sed -i '' s/$1/$2/g }
-function renameall() { git ls-files | grep --color=never $1 | while read LINE; do mv $LINE `echo $LINE | sed s/$1/$2/g`; done }
-
-# 共通エイリアス
-alias vi="vim"
-alias ls="ls -G"
-alias la="ls -ahlG"
-alias b="popd"
-alias be="bundle exec"
-
 # 環境変数
 GREP_OPTIONS='--color=always'
 LSCOLORS=gxfxcxdxbxegedabagacad
@@ -79,4 +69,9 @@ export GREP_OPTIONS LSCOLORS LESS CLICOLOR_FORCE
 # 各マシン固有の設定は.profileに書く
 if [ -f $HOME/.profile ]; then
   source $HOME/.profile
+fi
+
+# エイリアス設定ファイルを読み込む
+if [ -f $HOME/.alias ]; then
+  source $HOME/.alias
 fi
