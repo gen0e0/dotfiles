@@ -62,9 +62,10 @@ GREP_OPTIONS='--color=always'
 LSCOLORS=gxfxcxdxbxegedabagacad
 LESS='-R'
 LS='--color=always'
+CLICOLOR=1
 CLICOLOR_FORCE=1 # lsを端末以外へ出力する場合(lessへ渡す時など)も色付きにする
 
-export GREP_OPTIONS LSCOLORS LESS CLICOLOR_FORCE
+export GREP_OPTIONS LSCOLORS LESS CLICOLOR CLICOLOR_FORCE
 
 # 各マシン固有の設定は.profileに書く
 if [ -f $HOME/.profile ]; then
