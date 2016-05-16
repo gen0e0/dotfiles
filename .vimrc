@@ -107,6 +107,9 @@ if isdirectory(expand("~/.vim/bundle/Vundle.vim"))
   " Color setting
   Plugin 'nanotech/jellybeans.vim'
   let g:jellybeans_background_color_256 = 0
+
+  " Directory Tree 
+  Plugin 'scrooloose/nerdtree'
   
   call vundle#end()
   filetype plugin indent on
@@ -124,8 +127,8 @@ inoremap jj <Esc>
 " Emacs like keymapping
 inoremap <C-f> <Right>
 inoremap <C-b> <Left>
-" inoremap <C-p> <Up>
-" inoremap <C-n> <Down>
+inoremap <C-p> <Up>
+inoremap <C-n> <Down>
 inoremap <C-a> ^
 inoremap <C-e> $
 inoremap <C-d> <Del>
@@ -133,7 +136,15 @@ inoremap <C-h> <BS>
 inoremap <C-k> d$
 
 " Tabs
-nnoremap <C-t> :tabnew<CR>
-nnoremap <C-w> :tabclose<CR>
-nnoremap <C-n> :tabNext<CR>
-nnoremap <C-p> :tabprevious<CR>
+nnoremap <C-t><C-t> :tabnew<CR>
+nnoremap <C-t><C-w> :tabclose<CR>
+nnoremap <C-t><C-n> :tabnext<CR>
+nnoremap <C-t><C-p> :tabprevious<CR>
+
+" Buffer
+nnoremap <silent> gp :bprevious<CR>
+nnoremap <silent> gn :bnext<CR>
+
+" NERDTree
+map t :NERDTree<CR>
+
