@@ -1,6 +1,17 @@
+case "${OSTYPE}" in
+  linux*)
+    # GNU系はlsの色付けに--colorを使う
+    alias ls="ls --color"
+    alias la="ls -ahl --color"
+  ;;
+  darwin*)
+    # BSD系は--colorオプションの代わりに-Gを使う
+    alias ls="ls -G"
+    alias la="ls -ahlG"
+  ;;
+esac
+
 alias vi="vim"
-alias ls="ls -G"
-alias la="ls -ahlG"
 alias b="popd"
 
 # for Rails

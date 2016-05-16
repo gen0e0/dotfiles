@@ -65,6 +65,10 @@ set smartcase
 " バックスペースで色々削除できるようにする
 set backspace=indent,eol,start
 
+" ワイルドカー ド (|wildcards|) の展開時と
+" ファイル／ディレクトリ名の補完時に無視される
+set wildignore+=*/tmp/*,*.so,*.swp,*.zip
+
 " Vundle 
 " How to install: 
 " $ git clone https://github.com/VundleVim/Vundle.vim ~/.vim/bundle/Vundle.vim
@@ -79,6 +83,10 @@ if isdirectory(expand("~/.vim/bundle/Vundle.vim"))
   let g:ctrlp_map = '<C-o>'
   let g:ctrlp_cmd = 'CtrlP'
   let g:ctrlp_working_path_mode = 'ra'
+  let g:ctrlp_custom_ignore = {
+    \ 'dir':  '\v[\/]\.(git|hg|svn)$',
+    \ 'file': '\v\.(exe|so|dll)$',
+    \ }
 
   " Ruby on Rails
   Plugin 'tpope/vim-rails'
@@ -116,22 +124,16 @@ inoremap jj <Esc>
 " Emacs like keymapping
 inoremap <C-f> <Right>
 inoremap <C-b> <Left>
-inoremap <C-p> <Up>
-inoremap <C-n> <Down>
+" inoremap <C-p> <Up>
+" inoremap <C-n> <Down>
 inoremap <C-a> ^
-nnoremap <C-a> ^
 inoremap <C-e> $
-nnoremap <C-e> $
 inoremap <C-d> <Del>
 inoremap <C-h> <BS>
 inoremap <C-k> d$
 
 " Tabs
 nnoremap <C-t> :tabnew<CR>
-inoremap <C-t> <ESC>:tabnew<CR>
 nnoremap <C-w> :tabclose<CR>
-inoremap <C-w> <ESC>:tabclose<CR>
 nnoremap <C-n> :tabNext<CR>
-inoremap <C-n> <ESC>:tabNext<CR>
 nnoremap <C-p> :tabprevious<CR>
-inoremap <C-p> <ESC>:tabprevious<CR>
