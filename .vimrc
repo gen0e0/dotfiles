@@ -1,4 +1,7 @@
-" シンタックスハイライトオン
+" Basics
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+" シンタックスハイライト
 syntax on
 " デフォルトカラースキーマ
 colorscheme default
@@ -6,9 +9,6 @@ colorscheme default
 set t_Co=256
 " バックグラウンドカラー設定
 set background=dark
-
-" 互換性モードオフ
-set nocompatible
 
 " エンコーディング
 set encoding=utf-8
@@ -37,8 +37,8 @@ set nocursorline
 
 " 右下に行・列番号表示
 set ruler
-" 左の行番号非表示
-set nonumber
+" 左の行番号表示
+set number
 
 " 移動コマンド後に行頭に移動しない
 set nostartofline
@@ -67,73 +67,115 @@ set backspace=indent,eol,start
 
 " ワイルドカー ド (|wildcards|) の展開時と
 " ファイル／ディレクトリ名の補完時に無視される
-set wildignore+=*/tmp/*,*.so,*.swp,*.zip
+set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*.meta,.git
+
 
 " Vundle 
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
 " How to install: 
 " $ git clone https://github.com/VundleVim/Vundle.vim ~/.vim/bundle/Vundle.vim
 if isdirectory(expand("~/.vim/bundle/Vundle.vim"))
+  set nocompatible
+  filetype off 
   " set the runtime path to include Vundle and initialize
   set rtp+=~/.vim/bundle/Vundle.vim
-  filetype off 
   call vundle#begin()
 
-  " インクリメンタルファイルサーチ
-  Plugin 'ctrlpvim/ctrlp.vim'
-  let g:ctrlp_map = '<C-o>'
-  let g:ctrlp_cmd = 'CtrlP'
-  let g:ctrlp_working_path_mode = 'ra'
-  let g:ctrlp_custom_ignore = {
-    \ 'dir':  '\v[\/]\.(git|hg|svn)$',
-    \ 'file': '\v\.(exe|so|dll)$',
-    \ }
+    " let Vundle manage Vundle, required
+    Plugin 'VundleVim/Vundle.vim'
 
-  " Ruby on Rails
-  Plugin 'tpope/vim-rails'
+    " インクリメンタルファイルサーチ
+    Plugin 'ctrlpvim/ctrlp.vim'
+    let g:ctrlp_map = '<C-o>'
+    let g:ctrlp_cmd = 'CtrlP'
+    let g:ctrlp_working_path_mode = 'ra'
+    let g:ctrlp_custom_ignore = {
+      \ 'dir':  '\v[\/]\.(git|hg|svn)$',
+      \ 'file': '\v\.(exe|so|dll|meta|tmp)$',
+      \ }
 
-  " CoffeeScript syntax + autocompile
-  Plugin 'kchmck/vim-coffee-script'
+    " Directory Tree 
+    Plugin 'scrooloose/nerdtree'
+    let NERDTreeIgnore = [
+    \     '\.git$',
+    \     '\.pyc$',
+    \     '\.meta$'
+    \   ]
+    if isdirectory(expand("~/.vim/bundle/nerdtree"))
+      map t :NERDTree<CR>
+    endif
 
-  " Go lang
-  Plugin 'fatih/vim-go'
+    " Ruby on Rails
+    Plugin 'tpope/vim-rails'
 
-  " Python & Django
-  Plugin 'vim-scripts/indentpython.vim'
-  Plugin 'vim-scripts/django.vim'
+    " Go lang
+    Plugin 'fatih/vim-go'
 
-  " Elixir
-  Plugin 'elixir-lang/vim-elixir'
+    " Python & Django
+    Plugin 'vim-scripts/indentpython.vim'
+    Plugin 'vim-scripts/django.vim'
 
-  " Color setting
-  Plugin 'nanotech/jellybeans.vim'
-  let g:jellybeans_background_color_256 = 0
+    " Elixir
+    Plugin 'elixir-lang/vim-elixir'
 
-  " Directory Tree 
-  Plugin 'scrooloose/nerdtree'
-  
+    " Javascript
+    Plugin 'pangloss/vim-javascript'
+
+    " React.js
+    Plugin 'mxw/vim-jsx'
+
+    " Vue.js
+    Plugin 'posva/vim-vue'
+    
+    " CoffeeScript + autocompile
+    Plugin 'kchmck/vim-coffee-script'
+
+    " Color scheme
+    Plugin 'nanotech/jellybeans.vim'
+    let g:jellybeans_overrides = {
+    \     'Background': { 'guibg': '000000' },
+    \     'Comment': { 'guifg': '000000' },
+    \   }
+
   call vundle#end()
   filetype plugin indent on
 
-  colorscheme jellybeans
+  " Color scheme
+  " この設定は filetype plugin indent on の後に書かなくてはならない
+  if isdirectory(expand("~/.vim/bundle/jellybeans.vim"))
+    colorscheme jellybeans
+  endif
 endif
 
-autocmd FileType python setlocal shiftwidth=4 softtabstop=4 tabstop=4
+
+" Filetype
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+" タブストップの設定
+autocmd FileType ruby       setlocal shiftwidth=2 softtabstop=2 tabstop=2
+autocmd FileType python     setlocal shiftwidth=4 softtabstop=4 tabstop=4
+autocmd FileType php        setlocal shiftwidth=4 softtabstop=4 tabstop=4
+autocmd FileType javascript setlocal shiftwidth=4 softtabstop=4 tabstop=4
+
+
+" Key bindings
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " 行末までyank
 nnoremap Y y$
 " j連打でノーマルモードへ
 inoremap jj <Esc>
 
-" Emacs like keymapping
+" Emacsっぽい動き
 inoremap <C-f> <Right>
 inoremap <C-b> <Left>
 inoremap <C-p> <Up>
 inoremap <C-n> <Down>
-inoremap <C-a> ^
-inoremap <C-e> $
+inoremap <C-a> <Home>
+inoremap <C-e> <End>
 inoremap <C-d> <Del>
 inoremap <C-h> <BS>
-inoremap <C-k> d$
 
 " Tabs
 nnoremap <C-t><C-t> :tabnew<CR>
@@ -145,6 +187,5 @@ nnoremap <C-t><C-p> :tabprevious<CR>
 nnoremap <silent> gp :bprevious<CR>
 nnoremap <silent> gn :bnext<CR>
 
-" NERDTree
-map t :NERDTree<CR>
-
+" 以下のマッピングはVundleセクションの中にある
+" map t :NERDTree<CR>
