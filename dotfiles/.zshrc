@@ -63,7 +63,12 @@ export LESS='-R'
 export CLICOLOR=1
 export CLICOLOR_FORCE=1 # lsを端末以外へ出力する場合(lessへ渡す時など)も色付きにする
 
-# 各マシン固有の設定は.profileに書く
+# 各マシン固有の環境変数は.envに書く
+if [ -f $HOME/.env ]; then
+  source $HOME/.env
+fi
+
+# 各マシン固有の前処理は.profileに書く
 if [ -f $HOME/.profile ]; then
   source $HOME/.profile
 fi
