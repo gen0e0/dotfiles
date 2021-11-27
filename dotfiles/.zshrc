@@ -58,7 +58,6 @@ case "${TERM}" in
 esac
 
 # 環境変数
-export GREP_OPTIONS='--color=always'
 export LESS='-R'
 export CLICOLOR=1
 export CLICOLOR_FORCE=1 # lsを端末以外へ出力する場合(lessへ渡す時など)も色付きにする
