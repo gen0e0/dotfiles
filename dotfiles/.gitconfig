@@ -1,22 +1,30 @@
 [user]
-  name = gen
-  email = gen0e0@gmail.com
+	name = gen0e0
+	email = iezaki@hodoyoi.net
 [core]
-  filemode = true
-  editor = vim
-  # 行末のLFをCRLFへ変換する (Windows用)
-  autocrlf = input
-  excludesfile = ~/.gitignore_global
+	filemode = true
+	editor = vim
+	# 行末のLFをCRLFへ変換する (Windows用)
+	autocrlf = input
+	excludesfile = /Users/dev1/.gitignore_global
 [color]
-  ui = auto
+	ui = auto
 [push]
-  default = current
+	default = current
 [alias]
-  br = branch
-  ci = commit
-  co = checkout
-  st = status
-  sh = show
-  sb = show-branch
-  df = diff
-  l = log
+	br = branch
+	ci = commit
+	co = checkout
+	st = status
+	sh = show
+	sb = show-branch
+	df = diff
+	l = log
+[difftool "sourcetree"]
+	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
+	path = 
+[mergetool "sourcetree"]
+	cmd = /Applications/Sourcetree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
+	trustExitCode = true
+[commit]
+	template = /Users/dev1/.stCommitMsg

@@ -76,3 +76,7 @@ fi
 if [ -f $HOME/.alias ]; then
   source $HOME/.alias
 fi
+
+if [ -f "$HOME/.local/bin/env" ]; then
+  . "$HOME/.local/bin/env"
+fi

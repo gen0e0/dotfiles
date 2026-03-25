@@ -37,8 +37,8 @@ set nocursorline
 
 " 右下に行・列番号表示
 set ruler
-" 左の行番号表示
-set number
+" 左の行番号非表示
+set nonumber
 
 " 移動コマンド後に行頭に移動しない
 set nostartofline
@@ -70,83 +70,7 @@ set backspace=indent,eol,start
 set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*.meta,.git
 
 
-" Vundle 
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-" How to install: 
-" $ git clone https://github.com/VundleVim/Vundle.vim ~/.vim/bundle/Vundle.vim
-if isdirectory(expand("~/.vim/bundle/Vundle.vim"))
-  set nocompatible
-  filetype off 
-  " set the runtime path to include Vundle and initialize
-  set rtp+=~/.vim/bundle/Vundle.vim
-  call vundle#begin()
-
-    " let Vundle manage Vundle, required
-    Plugin 'VundleVim/Vundle.vim'
-
-    " インクリメンタルファイルサーチ
-    Plugin 'ctrlpvim/ctrlp.vim'
-    let g:ctrlp_map = '<C-o>'
-    let g:ctrlp_cmd = 'CtrlP'
-    let g:ctrlp_working_path_mode = 'ra'
-    let g:ctrlp_custom_ignore = {
-      \ 'dir':  '\v[\/]\.(git|hg|svn)$',
-      \ 'file': '\v\.(exe|so|dll|meta|tmp)$',
-      \ }
-
-    " Directory Tree 
-    Plugin 'scrooloose/nerdtree'
-    let NERDTreeIgnore = [
-    \     '\.git$',
-    \     '\.pyc$',
-    \     '\.meta$'
-    \   ]
-    if isdirectory(expand("~/.vim/bundle/nerdtree"))
-      map t :NERDTree<CR>
-    endif
-
-    " Ruby on Rails
-    Plugin 'tpope/vim-rails'
-
-    " Go lang
-    Plugin 'fatih/vim-go'
-
-    " Python & Django
-    Plugin 'vim-scripts/indentpython.vim'
-    Plugin 'vim-scripts/django.vim'
-
-    " Elixir
-    Plugin 'elixir-lang/vim-elixir'
-
-    " Javascript
-    Plugin 'pangloss/vim-javascript'
-
-    " React.js
-    Plugin 'mxw/vim-jsx'
-
-    " Vue.js
-    Plugin 'posva/vim-vue'
-    
-    " CoffeeScript + autocompile
-    Plugin 'kchmck/vim-coffee-script'
-
-    " Color scheme
-    Plugin 'nanotech/jellybeans.vim'
-    let g:jellybeans_overrides = {
-    \     'Background': { 'guibg': '000000' },
-    \     'Comment': { 'guifg': '000000' },
-    \   }
-
-  call vundle#end()
-  filetype plugin indent on
-
-  " Color scheme
-  " この設定は filetype plugin indent on の後に書かなくてはならない
-  if isdirectory(expand("~/.vim/bundle/jellybeans.vim"))
-    colorscheme jellybeans
-  endif
-endif
+filetype plugin indent on
 
 
 " Filetype
@@ -186,6 +110,3 @@ nnoremap <C-t><C-p> :tabprevious<CR>
 " Buffer
 nnoremap <silent> gp :bprevious<CR>
 nnoremap <silent> gn :bnext<CR>
-
-" 以下のマッピングはVundleセクションの中にある
-" map t :NERDTree<CR>

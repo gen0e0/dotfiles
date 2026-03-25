@@ -1,0 +1,7 @@
+{
+  "enabledPlugins": {
+    "serena@claude-plugins-official": true,
+    "context7@claude-plugins-official": true
+  },
+  "skipDangerousModePermissionPrompt": true
+}
