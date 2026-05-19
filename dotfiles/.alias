@@ -21,3 +21,6 @@ alias be="bundle exec"
 alias gd="git diff --color-words"
 alias gl="git log --graph --all --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative"
 alias gs="git status --branch --short"
+
+# Claude Code
+alias c="claude --dangerously-skip-permissions"
